@@ -1,0 +1,21 @@
+.container-fluid{
+    /* background-color: aqua; */
+    padding: 25px;
+    text-align: center;
+    font-size: x-large;
+}
+.heading{
+    text-align: center;
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    text-shadow: #EFA032 2px 2px 0px,
+                   4px 4px 0px #c11a2b, 
+                   5px 5px 5px #021d1d;
+
+    font-size: 50px;
+    font-weight: 500;
+}
+.nav-link{
+    padding: 3px;
+    background-color: aliceblue;
+}
