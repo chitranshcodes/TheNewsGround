@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheNewsGround-{{title}}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
 </head>
+
 <body>
-<div class="container-fluid bg-black bg-gradient heading rounded-pill border border-warning border-5 mb-2 border-opacity-75">
-    The-News-Ground
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">The-Hindu</div>
-        <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">TheTimesOfIndia</div>
-        <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">TheEconomicTimes</div>
-        <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">TheWashingtonPost</div>
+    <div
+        class="container-fluid bg-black bg-gradient heading rounded-pill border border-warning border-5 mb-2 border-opacity-75">
+        The-News-Ground
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-start-5">The-Hindu</div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">TheTimesOfIndia</div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50">TheEconomicTimes</div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-end-5">TheWashingtonPost
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row article">
+            <div class="col-2 sidebar border border-3 border-primary">
+                <div class="row border-bottom border-dark">Login</div>
+                <div class="row border-bottom border-dark">Create Profile</div>
+            </div>
+            <div class="col-10">
+                {% block content %}
+                {% endblock content%}
+            </div>
+        </div>
+
+        <div class="row footer border border-dark border-3">
+            <div class="col-4">About us</div>
+            <div class="col-4">Copyrights rights 2006</div>
+            <div class="col-4">Contact us</div>
+        </div>
+
+    </div>
 </body>
+
 </html>

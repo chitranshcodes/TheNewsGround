@@ -19,3 +19,26 @@
     padding: 3px;
     background-color: aliceblue;
 }
+.col-2{
+    height: 400px;
+    background-color: burlywood;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.sidebar{
+    padding: 10px;
+    text-indent: 5px;
+    /* padding-left: 30px; */
+
+}
+.col-10{
+    background-color: lightcyan;
+}
+.footer{
+    background-color: darkturquoise;
+}
+.article{
+    padding-bottom: 100px;
+}
