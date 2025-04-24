@@ -6,7 +6,7 @@ app.secret_key='njifnvdfsdcdcrvsdccdc'
 
 @app.route("/")
 def home():
-    return render_template('layout.html',title='TheNewsGround')
+    return render_template('home.html',title='TheNewsGround')
 
 @app.route("/thehindu")
 def thehindu():
@@ -16,7 +16,7 @@ def thehindu():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
-        flash(f"Account created for {form.username.data}",'success')
+        flash(f"Account created for {form.username.data}!",'success')
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
 
