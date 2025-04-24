@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Now!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+    <style>
+        body{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-group{
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+    <div class="form form-control-lg form-label">
+    {{form.username.label}} :
+    {%if form.username.errors %}
+    {%for error in form.username.errors%}
+   <div class="text-danger"> {{error}}</div>
+    {%endfor%}
+    {{form.username}}
+    {%else%}
+    {{form.username}}
+    {%endif%}
+</div>
+<div class="form-control-lg form-label">
+    {{form.email.label}} :
+    {%if form.email.errors %}
+    {%for error in form.email.errors%}
+   <div class="text-danger"> {{error}}</div>
+    {%endfor%}
+    {{form.email}}
+    {%else%}
+    {{form.email}}
+    {%endif%}
+    
+</div>
+<div class="form-control-lg form-label">
+    {{form.mob_num.label}} :
+    {%if form.mob_num.errors %}
+    {%for error in form.mob_num.errors%}
+   <div class="text-danger"> {{error}}</div>
+    {%endfor%}
+    {{form.mob_num}}
+    {%else%}
+    {{form.mob_num}}
+    {%endif%}
+    
+</div>
+<div class="form-control-lg form-label">
+    {{form.password.label}} :
+    {%if form.password.errors %}
+    {%for error in form.password.errors%}
+    <div class="text-danger">{{error}}</div>
+    {%endfor%}
+    {{form.password}}
+    {%else%}
+    {{form.password}}
+    {%endif%}
+</div>
+<div class="form-control-lg form-label">
+    {{form.confirm_password.label}} :
+    {%if form.confirm_password.errors %}
+    {%for error in form.confirm_password.errors%}
+    <div class="text-danger">{{error}}</div>
+    {%endfor%}
+    {{form.confirm_password}}
+    {%else%}
+    {{form.confirm_password}}
+    {%endif%}
+</div>
+<div class="btn btn-outline-info bg-black bg-gradient">
+    {{form.submit}}
+</div>
+</form>
+</body>
+
+</html>
