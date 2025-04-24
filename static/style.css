@@ -35,10 +35,24 @@ body{
 }
 .col-10{
     background-color: lightcyan;
+    padding: 0;
 }
 .footer{
     background-color: darkturquoise;
 }
 .article{
     padding-bottom: 100px;
+}
+.topic{
+    background-color: yellow;
+    border-bottom: 2px solid blue;
+}
+.descriptn{
+    background-color: #EFA032;
+    overflow-y: auto;
+    font-size: 15px;
+}
+.compartment{
+    border: 2px solid blue;
+    padding: 0;
 }
