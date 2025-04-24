@@ -11,6 +11,12 @@
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var myModal = new bootstrap.Modal(document.querySelector(".modal"));
+          myModal.show();
+        });
+      </script>
 </head>
 
 <body>
@@ -38,6 +44,30 @@
                     <a class="btn btn-secondary btn-md"   href="/register">Create Account</a></div>
             </div>
             <div class="col-10">
+                {%with messages=get_flashed_messages(with_categories=true)%}
+                {%if messages%}
+                    {%for category,message in messages%}
+                    <div class="modal" tabindex="-1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Hi!</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-{{category}} modal-body">
+                              <p>{{message}}</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {%endfor%}
+                {%endif%}
+
+                {%endwith%}
+          
                 {% block content %}
                 {% endblock content%}
             </div>
