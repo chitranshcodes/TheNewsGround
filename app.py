@@ -1,8 +1,24 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from forms import RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 app.secret_key='njifnvdfsdcdcrvsdccdc'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db=SQLAlchemy(app)
 
+class User(db.Model):
+    id=db.Column(db.Integer(), primary_key=True)
+    username=db.Column(db.String(20), nullable=False, unique=True)
+    email=db.Column(db.String(100), nullable=False)
+    password=db.Column(db.String(60), nullable=False)
+    number=db.Column(db.String(10))
+
+    def __repr__(self):
+        return f"User({self.username},{self.email},{self.id})"
+
+app.app_context().push()
+db.create_all()
 
 @app.route("/")
 def home():
@@ -16,6 +32,9 @@ def thehindu():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
+        user=User(username=form.username.data,email=form.email.data,password=form.password.data,number=form.mob_num.data)
+        db.session.add(user)
+        db.session.commit()
         flash(f"Account created for {form.username.data}!",'success')
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
