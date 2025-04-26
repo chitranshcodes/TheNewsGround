@@ -71,8 +71,7 @@ def login():
     if form.validate_on_submit():
         user=User.query.filter_by(username=form.username.data).first()
         if user and form.password.data==user.password:
-            
-            flash(f"{form.username.data} Logged in!",'success')
+            flash(f"{form.username.data} LogIn successful",'success')
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
 
