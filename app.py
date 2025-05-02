@@ -6,16 +6,18 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, V
 
 #password
 from flask_bcrypt import Bcrypt
-
+#login
+from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 
 app = Flask(__name__)
 app.secret_key='RQb4gEeXNxMJ0KHE'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db=SQLAlchemy(app)
 bcrypt=Bcrypt(app)
+LM=LoginManager(app)
 
 #DB models
-class User(db.Model):
+class User(db.Model, UserMixin):
     id=db.Column(db.Integer(), primary_key=True)
     username=db.Column(db.String(20), nullable=False)
     email=db.Column(db.String(100), nullable=False)
@@ -79,6 +81,7 @@ def login():
     if form.validate_on_submit():
         user=User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user)
             flash(f"{form.username.data} LogIn successful",'success')
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
