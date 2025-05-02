@@ -104,12 +104,12 @@ def login():
 def addnote():
     form=NoteForm()
     if form.validate_on_submit():
-        note=Note(content=form.content.data)
+        note=Note(content=form.content.data, author=current_user)
         db.session.add(note)
         db.session.commit()
         flash(f"Hurray!! Posted a new note")
         return redirect(url_for('home'))
-    return render_template('note.html', form=form)
+    return render_template('addnote.html', form=form)
 
 @app.route('/logout')
 @login_required
@@ -117,6 +117,11 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route('/notes')
+@login_required
+def notes():
+    posts=Note.query.filter_by(user_id=current_user.id).all()
+    return render_template('notes.html', posts=posts)
 
 if __name__=="__main__":
     app.run(debug=True)
