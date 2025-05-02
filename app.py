@@ -60,6 +60,10 @@ class LoginForm(FlaskForm):
     password=PasswordField('Password', validators=[DataRequired()])
     submit=SubmitField('Log-In')
 
+class NoteForm(FlaskForm):
+    content=StringField('content',validators=[DataRequired()])
+    submit=SubmitField('Add Note')
+
 #db
 app.app_context().push()
 db.create_all()
