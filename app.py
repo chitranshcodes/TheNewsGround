@@ -86,7 +86,7 @@ def register():
         db.session.commit()
         flash(f"Account created for {form.username.data}!",'success')
         return redirect(url_for('home'))
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, title='register')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -97,7 +97,19 @@ def login():
             login_user(user)
             flash(f"{form.username.data} LogIn successful",'success')
         return redirect(url_for('home'))
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title='login')
+
+@app.route('/addnote', methods=['POST'])
+@login_required
+def addnote():
+    form=NoteForm()
+    if form.validate_on_submit():
+        post=Post(content=form.content.data)
+        db.session.add(post)
+        db.session.commit()
+        flash(f"Hurray!! Posted a new note")
+        return redirect(url_for('home'))
+    return render_template('note.html', form=form)
 
 if __name__=="__main__":
     app.run(debug=True)
