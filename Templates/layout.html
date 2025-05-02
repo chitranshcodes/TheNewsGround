@@ -22,66 +22,82 @@
 <body>
     <div href="/home"
         class="container-fluid bg-black bg-gradient heading rounded-pill border border-warning border-5 mb-2 border-opacity-75">
-        The-NewsMania <a href="/">  📰</a>
-</div>
+        The-NewsMania <a href="/"> 📰</a>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-start-5">
                 <a href="/thehindu" style="color: black;">The Hindu</a>
             </div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/thehindu" style="color: black;">TheTimesOfIndia</a></div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/thehindu" style="color: black;">TheEconomicTimes</a></div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-end-5"><a href="/thehindu" style="color: black;">BBCnews</a></div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/thehindu"
+                    style="color: black;">TheTimesOfIndia</a></div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/thehindu"
+                    style="color: black;">TheEconomicTimes</a></div>
+            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-end-5"><a
+                    href="/thehindu" style="color: black;">BBCnews</a></div>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row article">
             <div class="col-2 sidebar border border-3 border-primary">
+                {% if current_user.is_authenticated %}
+                <div class="row border-bottom border-dark">
+                    <h4 class="btn btn-secondary btn-md">Hey {{current_user.username}}</h4>
+                </div>
+                <div class="row border-bottom border-dark">
+                    <a class="btn btn-secondary btn-md" href="/logout">Logout</a>
+                </div>
+                <div class="row border-bottom border-dark">
+                    <a class="btn btn-secondary btn-md" href="/addnote">Create New Note</a>
+                </div>
+
+                {%else%}
                 <div class="row border-bottom border-dark">
                     <a class="btn btn-secondary btn-md" href="/login">Sign-In</a>
                 </div>
                 <div class="row border-bottom border-dark">
                     <a class="btn btn-secondary btn-md" href="/register">Create Account</a>
                 </div>
-              
+                {%endif%}
 
-          
-        </div>
-        <div class="col-10">
-            {%with messages=get_flashed_messages(with_categories=true)%}
-            {%if messages%}
-            {%for category,message in messages%}
-            <div class="modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Hi!</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="alert alert-{{category}} modal-body">
-                            <p>{{message}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+            <div class="col-10">
+                {%with messages=get_flashed_messages(with_categories=true)%}
+                {%if messages%}
+                {%for category,message in messages%}
+                <div class="modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Hi!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="alert alert-{{category}} modal-body">
+                                <p>{{message}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {%endfor%}
+                {%endif%}
+
+                {%endwith%}
+
+                {% block content %}
+                {% endblock content%}
             </div>
-            {%endfor%}
-            {%endif%}
-
-            {%endwith%}
-
-            {% block content %}
-            {% endblock content%}
         </div>
-    </div>
 
-    <div class="row footer border border-dark border-3">
-        <div class="col-4">About us</div>
-        <div class="col-4">© Copyrights [Chitransh]</div>
-        <div class="col-4">Contact us</div>
-    </div>
+        <div class="row footer border border-dark border-3">
+            <div class="col-4">About us</div>
+            <div class="col-4">© Copyrights [Chitransh]</div>
+            <div class="col-4">Contact us</div>
+        </div>
 
     </div>
 </body>
