@@ -5,7 +5,7 @@ from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, ValidationError
 
 app = Flask(__name__)
-app.secret_key='njifnvdfsdcdcrvsdccdc'
+app.secret_key='RQb4gEeXNxMJ0KHE'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db=SQLAlchemy(app)
 
