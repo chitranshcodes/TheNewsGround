@@ -99,17 +99,24 @@ def login():
         return redirect(url_for('home'))
     return render_template('login.html', form=form, title='login')
 
-@app.route('/addnote', methods=['POST'])
+@app.route('/addnote', methods=['POST','GET'])
 @login_required
 def addnote():
     form=NoteForm()
     if form.validate_on_submit():
-        post=Post(content=form.content.data)
-        db.session.add(post)
+        note=Note(content=form.content.data)
+        db.session.add(note)
         db.session.commit()
         flash(f"Hurray!! Posted a new note")
         return redirect(url_for('home'))
     return render_template('note.html', form=form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
 
 if __name__=="__main__":
     app.run(debug=True)
