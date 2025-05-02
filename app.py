@@ -4,10 +4,15 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Optional, ValidationError
 
+#password
+from flask_bcrypt import Bcrypt
+
+
 app = Flask(__name__)
 app.secret_key='RQb4gEeXNxMJ0KHE'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db=SQLAlchemy(app)
+bcrypt=Bcrypt(app)
 
 #DB models
 class User(db.Model):
@@ -44,7 +49,9 @@ class LoginForm(FlaskForm):
     password=PasswordField('Password', validators=[DataRequired()])
     submit=SubmitField('Log-In')
 
-
+#db
+app.app_context().push()
+db.create_all()
 
 @app.route("/")
 def home():
@@ -58,7 +65,8 @@ def thehindu():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
-        user=User(username=form.username.data,email=form.email.data,password=form.password.data,number=form.mob_num.data)
+        hashed_pw=bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user=User(username=form.username.data,email=form.email.data,password=hashed_pw,number=form.mob_num.data)
         db.session.add(user)
         db.session.commit()
         flash(f"Account created for {form.username.data}!",'success')
@@ -70,7 +78,7 @@ def login():
     form=LoginForm()
     if form.validate_on_submit():
         user=User.query.filter_by(username=form.username.data).first()
-        if user and form.password.data==user.password:
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             flash(f"{form.username.data} LogIn successful",'success')
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
