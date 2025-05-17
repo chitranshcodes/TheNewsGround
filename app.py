@@ -9,6 +9,9 @@ from flask_bcrypt import Bcrypt
 #login
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 
+#bs4 scripts
+from scripts import thehinduinternational, thehindunational, thehindubreaking, thehindueconomy, toidelhi, toiup, toibusiness, toisports
+
 app = Flask(__name__)
 app.secret_key='RQb4gEeXNxMJ0KHE'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -74,7 +77,19 @@ def home():
 
 @app.route("/thehindu")
 def thehindu():
-    return render_template('TheHindu.html', title='TheHindu')
+    element1=thehinduinternational()
+    element2=thehindunational()
+    element3=thehindubreaking()
+    element4=thehindueconomy()
+    return render_template('TheHindu.html', title='TheHindu', element1=element1, element2=element2, element3=element3, element4=element4)
+
+@app.route("/thetoi")
+def thetoi():
+    element1=toidelhi()
+    element2=toiup()
+    element3=toibusiness()
+    element4=toisports()
+    return render_template('thetoi.html', title='TheTimesOfIndia', element1=element1, element2=element2, element3=element3, element4=element4)
 
 @app.route('/register', methods=['GET','POST'])
 def register():

@@ -5,7 +5,7 @@
         <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
             <div class="topic" style="flex: 2;">
-                Geopolitics
+                Delhi
             </div>
             <div class="descriptn" style="flex: 8;">
             <ol>
@@ -20,12 +20,12 @@
         <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
             <div class="topic" style="flex: 2;">
-                National
+                Uttar Pradesh
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
                     {% for el in element2 %}
-                    <li>{{el.get_text(strip=True)}} </li>
+                    <li>{{el}} </li>
                     
                     {% endfor %}
                     </ol>           
@@ -35,7 +35,7 @@
         <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
             <div class="topic" style="flex: 2;">
-                Breaking
+                Business
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
@@ -50,12 +50,12 @@
         <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
             <div class="topic" style="flex: 2;">
-                Economy
+                Sports
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
                     {% for el in element4 %}
-                    <li>{{ el }} </li>
+                    <li>{{el.get_text(strip=True)}}</li>
                     
                     {% endfor %}
                     </ol>          
