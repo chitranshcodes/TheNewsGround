@@ -9,7 +9,7 @@ def thehinduinternational():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         elements= soup.find_all(class_="title")
-
+        elements=set(elements)
         return elements
 
     else:
@@ -23,7 +23,7 @@ def thehindunational():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         elements= soup.find_all(class_="title")
-
+        elements=set(elements)
         return elements
 
     else:
@@ -37,7 +37,7 @@ def thehindubreaking():
         soup = BeautifulSoup(response.content, 'html.parser')
 
         elements= soup.find_all(class_="title")
-
+        elements=set(elements)
         return elements
 
     else:
@@ -54,9 +54,10 @@ def thehindueconomy():
         for a in A:
             b=a.find('a')
             b=b.get_text(strip=True)
-            Y.append(b)
-
-        return Y
+            if len(b.split())>5:
+                Y.append(b)
+        elements=set(Y)
+        return elements
 
     else:
         return ["sorry! unable to fetch"]  
@@ -69,7 +70,7 @@ def toidelhi():
         soup= BeautifulSoup(response.content, 'html.parser')
 
         elements=soup.find_all('figcaption')
-
+        elements=set(elements)
         return elements
 
     else:
@@ -86,9 +87,10 @@ def toiup():
 
         for el in elements:
             a=el.get('title')
-            if a:
+            if a and len(a.split())>5:
                 Y.append(a)
-        return Y
+        elements=set(Y)
+        return elements
 
     else:
         return ["sorry! unable to fetch"]
@@ -102,7 +104,7 @@ def toibusiness():
         soup= BeautifulSoup(response.content, 'html.parser')
 
         elements=soup.find_all('figcaption')
-
+        elements=set(elements)
         return elements
 
     else:
@@ -118,6 +120,7 @@ def toisports():
 
         elements= soup.find_all(class_="WavNE")
 
+        elements=set(elements)
         return elements
     else:
         return ["sorry! unable to fetch"] 
