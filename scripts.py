@@ -124,3 +124,21 @@ def toisports():
         return elements
     else:
         return ["sorry! unable to fetch"] 
+    
+def tet():
+    url="https://economictimes.indiatimes.com/"
+    response= requests.get(url)
+    Y={}
+    if response.status_code==200:
+        soup= BeautifulSoup(response.content, 'html.parser')
+
+        elements= soup.find_all('a')
+        for el in elements:
+            link=el.get('href')
+            el=el.get_text(strip=True)
+            if len(el.split())>5:
+                Y[el]=link
+
+        return Y
+    else:
+        return ["sorry! unable to fetch"] 

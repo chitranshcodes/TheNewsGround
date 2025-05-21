@@ -10,7 +10,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 
 #bs4 scripts
-from scripts import thehinduinternational, thehindunational, thehindubreaking, thehindueconomy, toidelhi, toiup, toibusiness, toisports
+from scripts import thehinduinternational, thehindunational, thehindubreaking, thehindueconomy, toidelhi, toiup, toibusiness, toisports,tet
 
 app = Flask(__name__)
 app.secret_key='RQb4gEeXNxMJ0KHE'
@@ -90,6 +90,11 @@ def thetoi():
     element3=toibusiness()
     element4=toisports()
     return render_template('thetoi.html', title='TheTimesOfIndia', element1=element1, element2=element2, element3=element3, element4=element4)
+
+@app.route('/theet')
+def theet():
+    element=tet()
+    return render_template('tet.html', title='TheEconomicTimes', element=element)
 
 @app.route('/register', methods=['GET','POST'])
 def register():

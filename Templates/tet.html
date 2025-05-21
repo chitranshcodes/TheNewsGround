@@ -1,0 +1,16 @@
+{%extends "layout.html"%}
+{%block content%}
+<div class="container">
+    <div class="row compartment" style="height: 400px;">
+
+        <ol class="list-group">
+            {% for el in element %}
+            <li>
+                <a class="list-group-item" href="{{element[el]}}" target="blank_">{{el}}</a>
+            </li>
+            {%endfor%}
+        </ol>
+
+    </div>
+</div>
+{%endblock content%}

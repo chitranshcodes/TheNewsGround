@@ -55,6 +55,7 @@ body{
 .compartment{
     border: 2px solid blue;
     padding: 0;
+    overflow-y: auto;
 }
 /* home animation css */
 /* From Uiverse.io by Nawsome */ 
