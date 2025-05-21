@@ -142,3 +142,10 @@ def tet():
         return Y
     else:
         return ["sorry! unable to fetch"] 
+
+def newsapi():
+    url = f'https://newsapi.org/v2/everything?q=keyword&apiKey=9bab2c52bd4941be825209ccf434cf30'
+
+    response = requests.get(url)
+    data = response.json()
+    return data
