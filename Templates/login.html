@@ -4,54 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Now!</title>
+    <title>Login Now!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-    crossorigin="anonymous"></script>
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <style>
-        body{
+        body {
+            height: 100vh;
             display: grid;
-            justify-content: center;
-            align-items: center;
+            place-items: center;
+            background-color: #f8f9fa;
         }
-        .form-group{
-            font-size: 30px;
+
+        .form-container {
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #0d6efd;
+        }
+
+        .form-group label {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            border-radius: 0.5rem;
+        }
+
+        .text-danger {
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
-    <form method="POST">
-        {{ form.hidden_tag() }}
+    <div class="form-container">
+        <div class="form-title">Register Now</div>
+        <form method="POST">
+            {{ form.hidden_tag() }}
 
-    <div class="form form-control-lg form-label">
-    {{form.username.label}} :
-    {%if form.username.errors %}
-    {%for error in form.username.errors%}
-   <div class="text-danger"> {{error}}</div>
-    {%endfor%}
-    {{form.username}}
-    {%else%}
-    {{form.username}}
-    {%endif%}
-</div>
-<div class="form-control-lg form-label">
-    {{form.password.label}} :
-    {%if form.password.errors %}
-    {%for error in form.password.errors%}
-    <div class="text-danger">{{error}}</div>
-    {%endfor%}
-    {{form.password}}
-    {%else%}
-    {{form.password}}
-    {%endif%}
-</div>
-<div class="btn btn-outline-info bg-black bg-gradient">
-    {{form.submit}}
-</div>
-</form>
+            <div class="mb-3 form-group">
+                {{ form.username.label(class="form-label") }}
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control is-invalid") }}
+                    {% for error in form.username.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.username(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="mb-3 form-group">
+                {{ form.password.label(class="form-label") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    {% for error in form.password.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="mt-4">
+                {{ form.submit(class="btn btn-outline-primary btn-custom") }}
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>
