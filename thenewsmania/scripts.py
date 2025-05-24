@@ -144,7 +144,8 @@ def tet():
         return ["sorry! unable to fetch"] 
 
 def newsapi():
-    url = f'https://newsapi.org/v2/everything?q=keyword&apiKey=9bab2c52bd4941be825209ccf434cf30'
+    apikey = 'acd91fb26b84cda47ad78c205c6ece84';
+    url = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=' + apikey;
 
     response = requests.get(url)
     print("STATUS CODE:", response.status_code)
