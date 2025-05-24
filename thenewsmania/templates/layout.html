@@ -98,9 +98,9 @@
         </div>
         {% else %}
         <div class="row footer border border-dark border-3">
-            <div class="col-4">About us</div>
+            <a class="col-4" href="{{url_for('about')}}" style="color: black;" >About us</a>
             <div class="col-4">© Copyrights [Chitransh]</div>
-            <div class="col-4">Contact us</div>
+            <a class="col-4" href="{{url_for('contact')}}" style="color: black;" >Contact us</a>
         </div>
         {% endif %}
 

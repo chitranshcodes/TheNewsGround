@@ -86,3 +86,11 @@ def logout():
 def notes():
     posts=Note.query.filter_by(user_id=current_user.id).all()
     return render_template('notes.html', posts=posts)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
