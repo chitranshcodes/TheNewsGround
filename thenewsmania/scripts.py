@@ -147,5 +147,10 @@ def newsapi():
     url = f'https://newsapi.org/v2/everything?q=keyword&apiKey=9bab2c52bd4941be825209ccf434cf30'
 
     response = requests.get(url)
+    print("STATUS CODE:", response.status_code)
+    print("RESPONSE TEXT:", response.text)
+
+    response.raise_for_status() 
+
     data = response.json()
     return data
