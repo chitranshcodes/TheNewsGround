@@ -2,34 +2,85 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Notes-{{current_user.username}}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Notes - {{ current_user.username }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    body {
+      background: #f7f9fc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .notes-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 2rem 2.5rem;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #003366;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .note-card {
+      background: #f0f4f8;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.03);
+      color: #1a1a1a;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      cursor: default;
+    }
+
+    .note-card:hover {
+      background: #d0e1ff;
+    }
+
+    .no-notes {
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 
 <body>
 
+  <div class="notes-container">
+    <h2>Your Notes</h2>
 
     {% if posts %}
-
-    {%for post in posts %}
-    <article class="media content-section">
-        <div class="media-body">
-            <div class="article-metadata">
-                {{post.content}}
-            </div>
-        </div>
-    </article>
-    {% endfor %}
+      {% for post in posts %}
+        <article class="note-card">
+          {{ post.content }}
+        </article>
+      {% endfor %}
     {% else %}
-    <p class="text-muted">You have no notes yet.</p>
+      <p class="no-notes">You have no notes yet.</p>
     {% endif %}
+  </div>
 
 </body>
 

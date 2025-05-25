@@ -2,80 +2,208 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{title}}</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+        crossorigin="anonymous" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+    {% block style %}{% endblock style %}
+    <style>
+        body {
+            background-image: url('/static/e91170f13c00f6484fc957d5429d8179.jpg');
+            background-repeat: repeat;
+            background-size: auto;
+            background-position: top left;
+            background-attachment: fixed;
+            background-color: #f9f9f7;
+            font-family: Arial, sans-serif;
+            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212529;
+        }
+
+        /* Header */
+
+        .heading {
+            background: linear-gradient(90deg, #000000, #1a1a1a);
+            color: #ffc107;
+            /* Bootstrap warning yellow */
+            font-weight: 700;
+            font-size: 3rem;
+            height: 100px;
+            margin: 0 auto;
+            text-shadow: #f5f5f8 2px 5px 25px;
+        }
+
+        .heading a:hover {
+            text-decoration: underline;
+            color: #f2f2f5;
+            /* lighter yellow */
+        }
+
+        /* Navigation row */
+        .nav-link a {
+            display: block;
+            padding: 0.7rem 1rem;
+            font-weight: 600;
+            color: solid black;
+            background: #e9ecef;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-link a:hover {
+            background-color: #0d6efd;
+            color: white !important;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgb(13 110 253 / 0.5);
+        }
+
+        .nav-link {
+            margin: 0.3rem 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 1rem;
+        }
+
+        .sidebar .btn {
+            width: 100%;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .btn-secondary:hover {
+            background-color: #343a40;
+            color: white;
+        }
+
+        /* Content area */
+        .article {
+            margin-top: 1rem;
+            margin-bottom: 0;
+            padding-bottom: 1rem;
+        }
+
+        /* Modal styling overrides */
+        .modal-content {
+            border-radius: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            box-shadow: 0 -2px 10px rgb(0 0 0 / 0.1);
+            font-weight: 600;
+            color: #495057;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .footer a {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #0a58ca;
+            text-decoration: underline;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+        }
+        .bt1:hover{
+            background-color: #FF8F00;
+        }
+    </style>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var myModal = new bootstrap.Modal(document.querySelector(".modal"));
-            myModal.show();
+            if (myModal._element) myModal.show();
         });
     </script>
 </head>
 
 <body>
-    <div href="/home"
-        class="container-fluid bg-black bg-gradient heading rounded-pill border border-warning border-5 mb-2 border-opacity-75">
-        The-NewsGround <a href="/"> 📰</a>
+
+    <div
+        class="container-fluid heading rounded-pill border border-warning border-5 mb-3 border-opacity-75 d-flex justify-content-center align-items-center">
+        The-NewsGround <a href="/" class="ms-2 text-warning text-decoration-none">📰</a>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-start-5">
-                <a href="/thehindu" style="color: black;">The Hindu</a>
-            </div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/thetoi"
-                    style="color: black;">TheTimesOfIndia</a></div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50"><a href="/theet"
-                    style="color: black;">TheEconomicTimes</a></div>
-            <div class="col nav-link fs-3 border border-info border-3 border-opacity-50 rounded-end-5"><a
-                    href="/api" style="color: black;">NewsApi</a></div>
+    <div class="container-fluid mb-3">
+        <div class="row justify-content-center gap-2 gap-md-0">
+            <div class="col-6 col-md nav-link"><a href="/thehindu">The Hindu</a></div>
+            <div class="col-6 col-md nav-link"><a href="/thetoi">TheTimesOfIndia</a></div>
+            <div class="col-6 col-md nav-link"><a href="/theet">TheEconomicTimes</a></div>
+            <div class="col-6 col-md nav-link"><a href="/api">NewsApi</a></div>
         </div>
     </div>
+
     <div class="container-fluid">
         <div class="row article">
-            <div class="col-2 sidebar border border-3 border-primary">
+            <div class="col-12 col-md-3 sidebar">
                 {% if current_user.is_authenticated %}
-                <div class="row border-bottom border-dark">
-                    <h4 class="btn btn-secondary btn-md">Hey {{current_user.username}}</h4>
+                <div class="mb-3">
+                    <h4 class="btn btn-outline-warning btn-lg rounded-pill bt1">Hey {{current_user.username}}</h4>
                 </div>
-                <div class="row border-bottom border-dark">
-                    <a class="btn btn-secondary btn-md" href="/logout">Logout</a>
-                </div>
-                <div class="row border-bottom border-dark">
-                    <a class="btn btn-secondary btn-md" href="/addnote">Create New Note</a>
-                </div>
-
-                {%else%}
-                <div class="row border-bottom border-dark">
-                    <a class="btn btn-secondary btn-md" href="/login">Sign-In</a>
-                </div>
-                <div class="row border-bottom border-dark">
-                    <a class="btn btn-secondary btn-md" href="/register">Create Account</a>
-                </div>
-                {%endif%}
-
-
+                <a class="btn btn-warning btn-lg rounded-pill mb-3 w-100" href="/logout">Logout</a>
+                <a class="btn btn-warning btn-lg rounded-pill w-100" href="/addnote">Create New Note</a>
+                {% else %}
+                <a class="btn btn-outline-primary btn-lg rounded-pill mb-3 w-100" href="/login">Sign-In</a>
+                <a class="btn btn-outline-primary btn-lg rounded-pill w-100" href="/register">Create Account</a>
+                {% endif %}
             </div>
-            <div class="col-10">
-                {%with messages=get_flashed_messages(with_categories=true)%}
-                {%if messages%}
-                {%for category,message in messages%}
+            <div class="col-12 col-md-9">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
                 <div class="modal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header bg-warning text-dark rounded-top">
                                 <h5 class="modal-title">Hi!</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="alert alert-{{category}} modal-body">
-                                <p>{{message}}</p>
+                            <div class="alert alert-{{category}} modal-body m-0">
+                                <p class="mb-0">{{message}}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -83,28 +211,38 @@
                         </div>
                     </div>
                 </div>
-                {%endfor%}
-                {%endif%}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
 
-                {%endwith%}
-
-                {% block content %}
-                {% endblock content%}
+                {% block content %}{% endblock content %}
             </div>
         </div>
+
         {% if current_user.is_authenticated %}
-        <div class="row footer border border-dark border-3">
-            <a class="btn btn-primary btn-outline-info btn-lg" href="/notes">Your Notes</a>
+        <div class="row footer mt-4 border border-dark border-3 rounded-3">
+            <a class=" w-100 custom-btn" href="/notes">Your Notes</a>
         </div>
         {% else %}
-        <div class="row footer border border-dark border-3">
-            <a class="col-4" href="{{url_for('about')}}" style="color: black;" >About us</a>
-            <div class="col-4">© Copyrights [Chitransh]</div>
-            <a class="col-4" href="{{url_for('contact')}}" style="color: black;" >Contact us</a>
+        <div class="container-fluid footer mt-4 border border-dark border-3 rounded-3">
+            <div class="row text-center w-100">
+                <div class="col-md-4 mb-2 mb-md-0">
+                    <a href="{{ url_for('about') }}" class="text-dark text-decoration-none">About Us</a>
+                </div>
+                <div class="col-md-4 mb-2 mb-md-0">
+                    <h5 class="mb-0">© Copyright [Chitransh]</h5>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('contact') }}" class="text-dark text-decoration-none">Contact Us</a>
+                </div>
+            </div>
         </div>
         {% endif %}
-
     </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

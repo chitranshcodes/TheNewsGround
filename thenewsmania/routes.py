@@ -53,7 +53,14 @@ def home():
 
 @app.route("/thehindu")
 def thehindu():
-    return render_template('TheHindu.html', title='TheHindu', element1=thehindu_cache['element1'], element2=thehindu_cache['element2'], element3=thehindu_cache['element3'], element4=thehindu_cache['element4'])
+    return render_template(
+    'TheHindu.html',
+    title='TheHindu',
+    element1=list(thehindu_cache['element1'])[4:],
+    element2=list(thehindu_cache['element2'])[4:],
+    element3=list(thehindu_cache['element3'])[4:],
+    element4=list(thehindu_cache['element4'])
+)
 
 @app.route("/thetoi")
 def thetoi():

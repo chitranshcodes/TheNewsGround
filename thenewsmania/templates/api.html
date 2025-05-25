@@ -1,15 +1,25 @@
-{%extends "layout.html"%}
-{%block content%}
+{% extends "layout.html" %}
+{%block style%}<Style>
+  a:hover {
+    color: #00509e;
+    background-color: rgba(0, 48, 102, 0.1);
+    transform: translateX(5px);
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 80, 158, 0.3);
+    cursor: pointer;
+  } </Style>{%endblock%}
+{% block content %}
 <div class="container">
-    <div class="row compartment" style="height: 400px;">
-        <ol class="list-group">
-            {% for el in element.articles %}
-            <li>
-                <a class="list-group-item" href="{{el.url}}" target="blank_">{{el.title}}</a>
-                <p class="list-group-item" style="font-size: 15px;" >{{ el.description }}</p>
-            </li>
-            {%endfor%}
-        </ol>
-    </div>
+
+  <div class="row compartment" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #f8f9fa;">
+    <ol class="list-group list-group-flush">
+      {% for el in element.articles %}
+      <li>
+        <a class="list-group-item" href="{{ el.url }}" target="_blank">{{ el.title }}</a>
+        <p class="list-group-item" style="font-size: 15px;">{{ el.description }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
 </div>
-{%endblock content%}
+{% endblock content %}

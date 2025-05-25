@@ -1,67 +1,192 @@
-{%extends "layout.html"%}
-{%block content%}
-<div class="container">
-    <div class="row">
-        <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
+{% extends "layout.html" %}
 
-            <div class="topic" style="flex: 2;">
+{% block style %}
+<style>
+  .card {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .card p, .descriptn li {
+    color: #2c2c2c;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  h5.text-primary,
+  h5.text-success,
+  h5.text-danger,
+  h5.text-warning,
+  .topic {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    margin-bottom: 10px;
+  }
+
+  .text-primary, .topic:nth-of-type(1) {
+    color: #003366 !important;
+  }
+
+  .text-success, .topic:nth-of-type(2) {
+    color: #006400 !important;
+  }
+
+  .text-danger, .topic:nth-of-type(3) {
+    color: #8B0000 !important;
+  }
+
+  .text-warning, .topic:nth-of-type(4) {
+    color: #b8860b !important;
+  }
+
+  .container{
+    color: #1a1a1a;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+  position: relative;
+  color: #f6f4f3;
+  text-shadow: #1a1a1a 5px 2px 15px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.25); /* translucent white */
+  backdrop-filter: blur(10px);           /* blur behind */
+  -webkit-backdrop-filter: blur(10px);   /* for Safari */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    margin-top: 0;
+  /* Make sure it covers full width of container */
+  width: 100%;
+  display: block;
+}
+
+  .compartment {
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+  }
+
+  .descriptn ol {
+    padding-left: 1rem;
+    margin: 0;
+  }
+
+  .descriptn li {
+    list-style-type: decimal;
+  }
+  /*bubbles*/
+  .topic {
+  position: relative;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* Color bubble */
+.topic::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -15px; /* adjust as needed */
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: currentColor; /* inherits the text color */
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Specific colors for each topic */
+.topic.text-primary::before {
+  color: #003366;
+}
+
+.topic.text-success::before {
+  color: #006400;
+}
+
+.topic.text-danger::before {
+  color: #8B0000;
+}
+
+.topic.text-warning::before {
+  color: #b8860b;
+}
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4 text-center fw-bold">Times Of India Highlights</h2>
+    <div class="row gy-4">
+        <div class="col-12 col-md-6 col-lg-3 compartment d-flex flex-column" style="height: 400px;">
+            <div class="topic text-primary" style="flex: 2;">
                 Delhi
             </div>
             <div class="descriptn" style="flex: 8;">
-            <ol>
-{% for el in element1 %}
-<li>{{el.get_text(strip=True)}} </li>
-
-{% endfor %}
-</ol>           
+                <ol>
+                    {% for el in element1 %}
+                    <li>{{ el.get_text(strip=True) }}</li>
+                    {% endfor %}
+                </ol>
             </div>
-
         </div>
-        <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
-            <div class="topic" style="flex: 2;">
+        <div class="col-12 col-md-6 col-lg-3 compartment d-flex flex-column" style="height: 400px;">
+            <div class="topic text-success" style="flex: 2;">
                 Uttar Pradesh
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
                     {% for el in element2 %}
-                    <li>{{el}} </li>
-                    
+                    <li>{{ el }}</li>
                     {% endfor %}
-                    </ol>           
+                </ol>
             </div>
-
         </div>
-        <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
-            <div class="topic" style="flex: 2;">
+        <div class="col-12 col-md-6 col-lg-3 compartment d-flex flex-column" style="height: 400px;">
+            <div class="topic text-danger" style="flex: 2;">
                 Business
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
                     {% for el in element3 %}
-                    <li>{{el.get_text(strip=True)}} </li>
-                    
+                    <li>{{ el.get_text(strip=True) }}</li>
                     {% endfor %}
-                    </ol>           
+                </ol>
             </div>
-
         </div>
-        <div class="col-3 compartment d-flex flex-column" style="height: 400px;">
 
-            <div class="topic" style="flex: 2;">
+        <div class="col-12 col-md-6 col-lg-3 compartment d-flex flex-column" style="height: 400px;">
+            <div class="topic text-warning" style="flex: 2;">
                 Sports
             </div>
             <div class="descriptn" style="flex: 8;">
                 <ol>
                     {% for el in element4 %}
-                    <li>{{el.get_text(strip=True)}}</li>
-                    
+                    <li>{{ el.get_text(strip=True) }}</li>
                     {% endfor %}
-                    </ol>          
+                </ol>
             </div>
-
         </div>
     </div>
 </div>
-{%endblock content%}
+{% endblock content %}

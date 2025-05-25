@@ -1,16 +1,50 @@
-{%extends "layout.html"%}
-{%block content%}
+{% extends "layout.html" %}
+{%block style%}<Style>
+    a:hover {
+      color: #00509e;
+      background-color: rgba(0, 48, 102, 0.1);
+      transform: translateX(5px);
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 80, 158, 0.3);
+      cursor: pointer;
+    }
+    h2{
+        position: relative;
+        font-weight: 700;
+        padding: 12px 20px;
+        border-radius: 10px;
+        text-align: center;
+     
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        margin-top: 0;
+        width: 100%;
+        display: block;
+        
+    color: #1a1a1a;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+    }
+    </Style>{%endblock%}
+{% block content %}
 <div class="container">
-    <div class="row compartment" style="height: 400px;">
+    <h2 class="mb-4 text-center fw-bold">
+        The Economic Times Highlights
+    </h2>
 
-        <ol class="list-group">
-            {% for el in element %}
-            <li>
-                <a class="list-group-item" href="{{element[el]}}" target="blank_">{{el}}</a>
-            </li>
-            {%endfor%}
-        </ol>
-
+    <div class="row">
+        <div class="col-12"
+            style="height: 400px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #f8f9fa;">
+            <ol class="list-group list-group-flush">
+                {% for el in element %}
+                <li class="list-group-item">
+                    <a href="{{ element[el] }}" target="_blank" class="text-decoration-none">
+                        {{ el }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
     </div>
 </div>
-{%endblock content%}
+{%endblock%}
