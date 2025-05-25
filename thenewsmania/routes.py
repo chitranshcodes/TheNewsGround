@@ -5,10 +5,47 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 #bs4 scripts
 from thenewsmania.scripts import thehinduinternational, thehindunational, thehindubreaking, thehindueconomy, toidelhi, toiup, toibusiness, toisports,tet, newsapi
-
 from thenewsmania import app,bcrypt,db
 from thenewsmania.models import User, Note
 from thenewsmania.forms import RegistrationForm, LoginForm, NoteForm
+
+from apscheduler.schedulers.background import BackgroundScheduler
+#caching
+thehindu_cache={}
+thetoi_cache={}
+theet_cache={}
+api_cache={}
+
+
+def update_thehindu():
+    thehindu_cache['element1']=thehinduinternational()
+    thehindu_cache['element2']=thehindunational()
+    thehindu_cache['element3']=thehindubreaking()
+    thehindu_cache['element4']=thehindueconomy()
+
+def update_thetoi():
+    thetoi_cache['element1']=toidelhi()
+    thetoi_cache['element2']=toiup()
+    thetoi_cache['element3']=toibusiness()
+    thetoi_cache['element4']=toisports()
+
+def update_theet():
+    theet_cache['element1']=tet()
+
+def update_api():
+    api_cache['element']=newsapi()
+
+scheduler=BackgroundScheduler()
+scheduler.add_job(update_thehindu, 'interval', minutes=15)
+scheduler.add_job(update_thetoi, 'interval', minutes=15)
+scheduler.add_job(update_theet, 'interval', minutes=15)
+scheduler.add_job(update_api, 'interval', minutes=15)
+scheduler.start()
+
+update_thehindu()
+update_thetoi()
+update_theet()
+update_api()
 
 @app.route("/")
 def home():
@@ -16,29 +53,19 @@ def home():
 
 @app.route("/thehindu")
 def thehindu():
-    element1=thehinduinternational()
-    element2=thehindunational()
-    element3=thehindubreaking()
-    element4=thehindueconomy()
-    return render_template('TheHindu.html', title='TheHindu', element1=element1, element2=element2, element3=element3, element4=element4)
+    return render_template('TheHindu.html', title='TheHindu', element1=thehindu_cache['element1'], element2=thehindu_cache['element2'], element3=thehindu_cache['element3'], element4=thehindu_cache['element4'])
 
 @app.route("/thetoi")
 def thetoi():
-    element1=toidelhi()
-    element2=toiup()
-    element3=toibusiness()
-    element4=toisports()
-    return render_template('thetoi.html', title='TheTimesOfIndia', element1=element1, element2=element2, element3=element3, element4=element4)
+    return render_template('thetoi.html', title='TheTimesOfIndia',element1=thetoi_cache['element1'], element2=thetoi_cache['element2'], element3=thetoi_cache['element3'], element4=thetoi_cache['element4'])
 
 @app.route('/theet')
 def theet():
-    element=tet()
-    return render_template('tet.html', title='TheEconomicTimes', element=element)
+    return render_template('tet.html', title='TheEconomicTimes', element=theet_cache['element1'])
 
 @app.route('/api')
 def api():
-    element=newsapi()
-    return render_template('api.html', title='Api-News', element=element)
+    return render_template('api.html', title='Api-News', element=api_cache['element'])
 
 @app.route('/register', methods=['GET','POST'])
 def register():

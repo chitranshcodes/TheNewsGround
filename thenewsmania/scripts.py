@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 def thehinduinternational():
-    url="https://www.thehindu.com/news/international/"
-    response= requests.get(url)
+    url1="https://www.thehindu.com/news/international/"
+    response= requests.get(url1)
 
     if response.status_code==200:
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -16,8 +16,8 @@ def thehinduinternational():
         return ["sorry! unable to fetch"]
     
 def thehindunational():
-    url="https://www.thehindu.com/news/national/"
-    response= requests.get(url)
+    url2="https://www.thehindu.com/news/national/"
+    response= requests.get(url2)
 
     if response.status_code==200:
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -30,8 +30,8 @@ def thehindunational():
         return ["sorry! unable to fetch"]  
     
 def thehindubreaking():
-    url="https://www.thehindu.com/news/"
-    response= requests.get(url)
+    url3="https://www.thehindu.com/news/"
+    response= requests.get(url3)
 
     if response.status_code==200:
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -44,8 +44,8 @@ def thehindubreaking():
         return ["sorry! unable to fetch"]
     
 def thehindueconomy():
-    url="https://frontline.thehindu.com/economy/"
-    response= requests.get(url)
+    url4="https://frontline.thehindu.com/economy/"
+    response= requests.get(url4)
     Y=[]
     if response.status_code==200:
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -63,8 +63,8 @@ def thehindueconomy():
         return ["sorry! unable to fetch"]  
 
 def toidelhi():
-    url="https://timesofindia.indiatimes.com/city/delhi"
-    response= requests.get(url)
+    url5="https://timesofindia.indiatimes.com/city/delhi"
+    response= requests.get(url5)
 
     if response.status_code==200:
         soup= BeautifulSoup(response.content, 'html.parser')
@@ -77,8 +77,8 @@ def toidelhi():
         return ["sorry! unable to fetch"] 
 
 def toiup():
-    url="https://timesofindia.indiatimes.com/india/uttar-pradesh"
-    response= requests.get(url)
+    url6="https://timesofindia.indiatimes.com/india/uttar-pradesh"
+    response= requests.get(url6)
 
     if response.status_code==200:
         soup= BeautifulSoup(response.content, 'html.parser')
@@ -96,9 +96,9 @@ def toiup():
         return ["sorry! unable to fetch"]
     
 def toibusiness():
-    url="https://timesofindia.indiatimes.com/business"
+    url7="https://timesofindia.indiatimes.com/business"
 
-    response= requests.get(url)
+    response= requests.get(url7)
 
     if response.status_code==200:
         soup= BeautifulSoup(response.content, 'html.parser')
@@ -111,9 +111,9 @@ def toibusiness():
         return ["sorry! unable to fetch"] 
 
 def toisports():
-    url="https://timesofindia.indiatimes.com/sports"
+    url8="https://timesofindia.indiatimes.com/sports"
 
-    response= requests.get(url)
+    response= requests.get(url8)
 
     if response.status_code==200:
         soup= BeautifulSoup(response.content, 'html.parser')
@@ -126,8 +126,8 @@ def toisports():
         return ["sorry! unable to fetch"] 
     
 def tet():
-    url="https://economictimes.indiatimes.com/"
-    response= requests.get(url)
+    url9="https://economictimes.indiatimes.com/"
+    response= requests.get(url9)
     Y={}
     if response.status_code==200:
         soup= BeautifulSoup(response.content, 'html.parser')
@@ -141,13 +141,13 @@ def tet():
 
         return Y
     else:
-        return ["sorry! unable to fetch"] 
+        return ["sorry! unable to fetch"]
 
 def newsapi():
     apikey = 'acd91fb26b84cda47ad78c205c6ece84';
-    url = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=' + apikey;
+    url10 = 'https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=' + apikey;
 
-    response = requests.get(url)
+    response = requests.get(url10)
     print("STATUS CODE:", response.status_code)
     print("RESPONSE TEXT:", response.text)
 
